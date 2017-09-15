@@ -13,5 +13,8 @@
       <button type="submit" name="button">EDIT</button>
     </form>
   </body>
+  <%if(err_msg){%>
+    <p><%=err_msg%></p>
+  <%}%>
   <a href="/items">Back</a>
 </html>

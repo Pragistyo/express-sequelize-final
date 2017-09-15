@@ -8,7 +8,7 @@ const model   = require('../models')
 router.get('/',(req,res)=>{
   model.Item.findAll({order:[['id','ASC']]}).then(rows=>{
 
-    res.render('items',{data:rows,title:'Students'})
+    res.render('items',{data:rows,err_msg:false})
   })
   .catch(err=>{
     throw err.toString()
@@ -32,7 +32,8 @@ router.post('/add',(req,res)=>{
     {res.redirect('/items')}
   })
   .catch(err=>{
-    throw err.toString()
+    console.log(err);
+    res.render('itemsAdd',{err_msg:err.errors[0].message})
   })
 })
 //-------------------------GET EDIT-----------------------------
@@ -60,7 +61,9 @@ router.post('/edit/:id',(req,res)=>{
     res.redirect('/items')
   })
   .catch(err=>{
-    throw err.toString()
+    model.Item.findById(req.params.id).then(datanya=>{
+      res.render('itemEdit',{data:datanya,err_msg:err.errors[0].message})
+    })
   })
 })
 
