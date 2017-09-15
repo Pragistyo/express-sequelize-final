@@ -7,14 +7,15 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 
-const index    = require('./router/index.js');
-const items = require('./router/items.js');
+const index     = require('./router/index.js');
+const items     = require('./router/items.js');
+const suppliers = require('./router/suppliers.js');
 
 
 
 app.use('/', index)
 app.use('/items', items)
-// app.use('/students', students)
+app.use('/suppliers', suppliers)
 // app.use('/teachers', teachers)
 
 

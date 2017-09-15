@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Suppliers</title>
+    <h1>EDIT suppliers</h1>
+  </head>
+  <body>
+    <form action="/suppliers/edit/<%=data.id%>" method="post">
+      Suppliers Name: <input type="text" name="name" value="<%=data.name%>"><br>
+      Suppliers City: <input type="text" name="kota" value="<%=data.kota%>"><br>
+      <button type="submit" name="button">EDIT</button>
+    </form>
+  </body>
+  <a href="/suppliers">Back</a>
+</html>
