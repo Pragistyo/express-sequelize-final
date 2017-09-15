@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
                              msg: "Code Item harus diisi dengan 6 karakter"
                            },
                        is: {
-                          args: /(HP|SW|LP)\d+/,
+                          args: /(HP|SW|LP)\d{4}/,
                           msg: "Code Item harus diawali dengan HP | SW | LP dan diikuti dengan 4 digit angka"
                           }
                         }
