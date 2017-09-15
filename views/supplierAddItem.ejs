@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+<div class="type-r0">
+<h1>ADD ITEM TO SUPPLIERS</h1><br>
+<a href="/suppliers">show all data</a><br><br>
+<body>
+  <form action="/suppliers/<%=data.id%>/additem" method="post">
+    <fieldset>
+      <label>name: </label> <label><%=data.name%></label><br>
+      <label>City : </label> <label><%=data.kota%></label><br>
+      <label >Choose Item: </label><br>
+      <select name="ItemId">
+        <%dataItem.forEach(z=>{%>
+        <option value="<%=z.id%>"><%=z.name%></option>
+          <%})%>
+      </select>
+      <button type="submit">ADD ITEM</button>
+    </fieldset>
+  </form><br>
+  <%if(err_msg){ %>
+    <p><%=err_msg%></p>
+    <%  }%>
+  <a href="/suppliers">BACK</a>
+  <body>
