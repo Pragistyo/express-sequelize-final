@@ -1,0 +1,27 @@
+{
+  "name": "express-sequelize-final",
+  "version": "1.0.0",
+  "description": "repo final live code kit fox 2017",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pragistyo/express-sequelize-final.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pragistyo/express-sequelize-final/issues"
+  },
+  "homepage": "https://github.com/Pragistyo/express-sequelize-final#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "pg": "^7.3.0",
+    "sequelize": "^4.8.3",
+    "sequelize-cli": "^3.0.0-2"
+  }
+}

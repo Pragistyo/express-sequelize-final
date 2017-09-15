@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <h1>SUPPLIERS LIST</h1>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>Suppliers ID </th>
+        <th>Suppliers Name</th>
+        <th>Suppliers City</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach(z=>{%>
+      <tr>
+        <td><%=z.id%></td>
+        <td><%=z.name%></td>
+        <td><%=z.kota%></td>
+        <td>
+          <a href="/suppliers/edit/<%=z.id%>"><button type="button" name="button">EDIT</button></a>
+          <a href="/suppliers/delete/<%=z.id%>"><button type="button" name="button">DELETE</button></a>
+        </td>
+      </tr>
+      <%})%>
+    </table>
+    <br>
+    <a href="/suppliers/add"><button type="button" name="button">Add New Item</button></a>
+  </body><br>
+  <a href="/">Home</a>
+</html>

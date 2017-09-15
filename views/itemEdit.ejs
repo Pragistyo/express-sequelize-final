@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>itemEdit</title>
+    <h1>EDIT Item</h1>
+  </head>
+  <body>
+    <form action="/items/edit/<%=data.id%>" method="post">
+      Item Name: <input type="text" name="name" value="<%=data.name%>"><br>
+      Item Brand: <input type="text" name="brand" value="<%=data.brand%>"><br>
+      Code Item: <input type="text" name="codeitem" value="<%=data.codeitem%>"><br>
+      <button type="submit" name="button">EDIT</button>
+    </form>
+  </body>
+  <a href="/items">Back</a>
+</html>
