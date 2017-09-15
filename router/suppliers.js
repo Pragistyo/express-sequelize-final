@@ -6,9 +6,9 @@ const model   = require('../models')
 
 //----------------------------FIRST PAGE---------------------------
 router.get('/',(req,res)=>{
-  model.Suppliers.findAll({order:[['id','ASC']]}).then(rows=>{
-
-    res.render('suppliers',{data:rows})
+  model.Suppliers.findAll({order:[['id','ASC']]},{include:[model.Item]}).then(rows=>{
+    res.send()
+    // res.render('suppliers',{data:rows})
   })
   .catch(err=>{
     throw err.toString()
