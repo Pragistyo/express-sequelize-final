@@ -70,7 +70,7 @@ router.get('/:id/additem',(req,res)=>{
   })
 })
 
-router.post('/:id/addsubject',(req,res)=>{
+router.post('/:id/additem',(req,res)=>{
   // model.StudentSubject.findOne({where:{StudentId:req.params.id}).then(conj=>{
   //
   // if(conj.)
@@ -82,8 +82,9 @@ router.post('/:id/addsubject',(req,res)=>{
   //   }
   //   if(count == true){
       model.SupplierItem.create({
-                                    StudentId:req.params.id,
-                                    SubjectId:req.body.SubjectId
+                                    SupplierId:req.params.id,
+                                    ItemId:req.body.ItemId,
+                                    price:req.body.price
                                   })
       .then(()=>{
         res.redirect('/suppliers')
