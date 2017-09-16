@@ -12,6 +12,7 @@
         <th>Item Name</th>
         <th>Item Brand</th>
         <th>Code Item</th>
+        <th>List Supplier</th>
         <th>Action</th>
       </tr>
       <% data.forEach(z=>{%>
@@ -20,6 +21,17 @@
         <td><%=z.name%></td>
         <td><%=z.brand%></td>
         <td><%=z.codeitem%></td>
+        <%if((z.dataValues.Suppliers) && (z.dataValues.Suppliers.length>0)){%>
+        <td>
+            <ul>
+              <%z.Suppliers.forEach(a=>{%>
+              <li><%=a.name%> @<%=a.SupplierItem.price%></li>
+              <%})%>
+            </ul>
+        </td>
+        <%}else{%>
+        <td class="text-center"><font color="red">No Supplier Yet</font></td>
+        <%}%>
         <td>
           <a href="/items/edit/<%=z.id%>"><button type="button" name="button">EDIT</button></a>
           <a href="/items/delete/<%=z.id%>"><button type="button" name="button">DELETE</button></a>

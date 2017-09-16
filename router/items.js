@@ -1,15 +1,30 @@
 const express = require('express');
 const router  = express.Router();
 const model   = require('../models')
+const money = require('../helper/moneyFormat');
 
 
 
 //----------------------------FIRST PAGE---------------------------
 router.get('/',(req,res)=>{
-  model.Item.findAll({order:[['id','ASC']]}).then(rows=>{
-
-    res.render('items',{data:rows,err_msg:false})
-  })
+  model.Item.findAll({include:[model.Suppliers]},{order:[['id','ASC']]}).then(rows=>{
+    let count = 0
+    rows.forEach(z=>{
+      if(z.Suppliers.length>0){
+        z.Suppliers.map(d=>{
+          return d.SupplierItem.price = money(d.SupplierItem.price)
+        })
+      }
+      // return Promise.all(z.Items).then(mappings=>{
+        // z.Items = mappings
+        count++
+        if(count == rows.length){
+          // res.send(rows)
+          res.render('items',{data:rows,err_msg:false})
+        }
+      // })
+    })
+    })
   .catch(err=>{
     throw err.toString()
   })

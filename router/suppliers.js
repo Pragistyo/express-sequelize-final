@@ -13,20 +13,17 @@ router.get('/',(req,res)=>{
     let count = 0
     rows.forEach(z=>{
       if(z.Items.length>0){
-        // let count1 = 0
         z.Items.map(d=>{
-          // count1 ++
           return d.SupplierItem.price = money(d.SupplierItem.price)
         })
       }
-      // console.log(z.Items);
-      return Promise.all(z.Items).then(mappings=>{
-        z.Items = mappings
+      // return Promise.all(z.Items).then(mappings=>{
+        // z.Items = mappings
         count++
         if(count == rows.length){
-          res.render('suppliers',{data:rows})
+          res.render('suppliers',{data:rows,err_msg:false})
         }
-      })
+      // })
     })
   })
   .catch(err=>{
