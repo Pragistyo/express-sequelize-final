@@ -1,14 +1,33 @@
 const express = require('express');
 const router  = express.Router();
 const model   = require('../models')
+const money = require('../helper/moneyFormat');
 
 
 
 //----------------------------FIRST PAGE---------------------------
 router.get('/',(req,res)=>{
-  model.Suppliers.findAll({order:[['id','ASC']]},{include:[model.Item]}).then(rows=>{
-    // res.send(rows)
-    res.render('suppliers',{data:rows})
+  model.Suppliers.findAll({include:{model:model.Item}},{order:[['id','ASC']]}).then(rows=>{
+    // console.log('------->',rows.length);
+    // res.send(rows[0].Items)
+    let count = 0
+    rows.forEach(z=>{
+      if(z.Items.length>0){
+        // let count1 = 0
+        z.Items.map(d=>{
+          // count1 ++
+          return d.SupplierItem.price = money(d.SupplierItem.price)
+        })
+      }
+      // console.log(z.Items);
+      return Promise.all(z.Items).then(mappings=>{
+        z.Items = mappings
+        count++
+        if(count == rows.length){
+          res.render('suppliers',{data:rows})
+        }
+      })
+    })
   })
   .catch(err=>{
     throw err.toString()
@@ -63,9 +82,41 @@ router.post('/edit/:id',(req,res)=>{
 })
 //----------------------ADD ITEM TO SUPPLIERS--------------------------------
 router.get('/:id/additem',(req,res)=>{
-  model.Suppliers.findById(req.params.id).then(rows=>{
+  model.Suppliers.findAll({include:{model:model.Item},where:{id:req.params.id}}).then(rows=>{
     model.Item.findAll().then(rowsItem=>{
-      res.render('supplierAddItem',{data:rows,dataItem:rowsItem,err_msg:false,pageTitle:"Add Item to Supplier"})
+      // for (var i = 0; i < rows[0].Items.length; i++) {
+      //   for (var j = 0; j < rowsItem.length; j++) {
+      //     if(rows[0].Items[i].name === rowsItem[j].name){
+      //       rowsItem.splice(j,1)
+      //       // rowsItem.haha = 1
+      //     }
+      //   }
+      // }
+      // res.send(rows)
+      let count = 0
+      let alreadyList= [];
+      if(rows[0].Items.length>0){
+        rows[0].Items.forEach(z=>{
+
+            z.SupplierItem.price = money(z.SupplierItem.price)
+            let count1 = 0
+            count ++
+            rowsItem.forEach(d=>{
+              count1++
+              if(z.name === d.name){
+                alreadyList.push([z.name, z.SupplierItem.price])
+                index = count1-1
+                rowsItem.splice(index,1)
+              }
+              if(count === rows[0].Items.length && count1 === rowsItem.length){
+                // res.send(rowsItem)
+                res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,pageTitle:"Add Item to Supplier"})
+              }
+            })
+        })
+      }else{
+        res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,pageTitle:"Add Item to Supplier"})
+      }
     })
   })
 })

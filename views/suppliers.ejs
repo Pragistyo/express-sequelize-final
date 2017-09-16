@@ -21,10 +21,16 @@
         <td><%=z.name%></td>
         <td><%=z.kota%></td>
         <td><a href="/suppliers/<%=z.id%>/additem"><button type="button" name="button">Assign Item</button></a></td>
-        <%if((z.Items)){%>
-          <td><%=z.Items%></td>
+        <%if((z.dataValues.Items) && (z.dataValues.Items.length>0)){%>
+        <td>
+            <ol>
+              <%z.Items.forEach(a=>{%>
+              <li><%=a.name%> @<%=a.SupplierItem.price%></li>
+              <%})%>
+            </ol>
+        </td>
         <%}else{%>
-          <td class="text-center"><font color="red">No Item Yet</font></td>
+        <td class="text-center"><font color="red">No Item Yet</font></td>
         <%}%>
         <td>
           <a href="/suppliers/edit/<%=z.id%>"><button type="button" name="button">EDIT</button></a>

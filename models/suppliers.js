@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
 
   Suppliers.associate = models=>{
     Suppliers.belongsToMany(models.Item,{through:'SupplierItem',foreignKey:'SupplierId'})
-    Suppliers.hasMany(models.SupplierItem,{foreignKey:'SupplierId'})
+    Suppliers.hasMany(models.SupplierItem)
+    // Suppliers.hasMany(models.Item,{through:"SupplierItem",foreignKey:"SupplierId"})
   }
   return Suppliers;
 };

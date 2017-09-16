@@ -7,19 +7,26 @@
 <h1>ADD ITEM TO SUPPLIERS</h1><br>
 <a href="/suppliers">show all data</a><br><br>
 <body>
-  <form action="/suppliers/<%=data.id%>/additem" method="post">
+  <form action="/suppliers/<%=data[0].id%>/additem" method="post">
     <fieldset>
-      <label>name: </label> <label><%=data.name%></label><br>
-      <label>City : </label> <label><%=data.kota%></label><br>
-      <label >Choose Item: </label><br>
+      <label>Name: </label> <label><%=data[0].name%></label><br>
+      <label>City : </label> <label><%=data[0].kota%></label><br>
+      <h3>LIST ITEM</h3>
+      <ul>
+          <%dataList.forEach(item=>{%>
+          <li><%=item[0]%><%='   '%><%=item[1]%></li>
+          <%})%>
+      </ul>
+    </fieldset><br><br>
+    <label >List Item to add: </label><br>
       <select name="ItemId">
         <%dataItem.forEach(z=>{%>
-        <option value="<%=z.id%>"><%=z.name%></option>
-          <%})%>
+              <option value="<%=z.id%>"><%=z.name%></option>
+        <%})%>
       </select>
-      <input type="integer" name="price" value="">
+      <label>Price: </label>
+      <input type="integer" name="price" value=""><br>
       <button type="submit">ADD ITEM</button>
-    </fieldset>
   </form><br>
   <%if(err_msg){ %>
     <p><%=err_msg%></p>
