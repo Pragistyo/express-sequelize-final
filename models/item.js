@@ -17,15 +17,15 @@ module.exports = function(sequelize, DataTypes) {
                         }
              }
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+    hooks: {
+      beforeDestroy: function(models) {
+        // models.SupplierItem.destroy({where:{ItemId:Item.id}})
       }
     }
   });
   Item.associate = models=>{
     Item.belongsToMany(models.Suppliers,{through:'SupplierItem',foreignKey:'ItemId'})
-    Item.hasMany(models.SupplierItem)
+    Item.hasMany(models.SupplierItem,{onDelete : 'cascade', hooks: true})
   }
 
   return Item;

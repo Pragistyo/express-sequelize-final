@@ -13,8 +13,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   SupplierItem.associate = models=>{
-    SupplierItem.belongsTo(models.Item)
-    SupplierItem.belongsTo(models.Suppliers)
+    SupplierItem.belongsTo(models.Item,{hooks:true})
+    SupplierItem.belongsTo(models.Suppliers,{hooks:true})
   }
   return SupplierItem;
 };

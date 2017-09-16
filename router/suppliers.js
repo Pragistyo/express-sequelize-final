@@ -89,24 +89,29 @@ router.get('/:id/additem',(req,res)=>{
       //     }
       //   }
       // }
-      // res.send(rows)
       let count = 0
       let alreadyList= [];
       if(rows[0].Items.length>0){
         rows[0].Items.forEach(z=>{
 
+          count ++
             z.SupplierItem.price = money(z.SupplierItem.price)
             let count1 = 0
-            count ++
             rowsItem.forEach(d=>{
               count1++
               if(z.name === d.name){
                 alreadyList.push([z.name, z.SupplierItem.price])
                 index = count1-1
-                rowsItem.splice(index,1)
+                if(count1<rowsItem.length){
+                  rowsItem.splice(index,1)}
               }
-              if(count === rows[0].Items.length && count1 === rowsItem.length){
-                // res.send(rowsItem)
+              // console.log(count1);
+              // console.log('====================>',rowsItem.length);
+              // console.log(('+++++++++++++++++++++++++'));
+              // console.log('z',count);
+              // console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz>',rows[0].Items.length);
+              if(count == rows[0].Items.length && count1 == rowsItem.length){
+            //  res.send(rowsItem)
                 res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,pageTitle:"Add Item to Supplier"})
               }
             })
