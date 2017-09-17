@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Suppliers Add</title>
-    <h1>ADD Suppliers</h1>
-  </head>
+<%- include partial/header%>
+<%- include partial/navbar%>
+    <!-- <h1>ADD Suppliers</h1> -->
+<div class="container">
+<div class="row">
+<div class="col-md-8 ml-md-auto mr-md-auto" style="margin-top:50px">
+<h1 style="margin:0;">Add Supplier</h1>
   <body>
     <form action="/suppliers/add/" method="post">
-      Suppliers Name: <input type="text" name="name" value="" placeholder="Input Suppliers Name"><br>
-      Suppliers City: <input type="text" name="kota" value="" placeholder="Input Suppliers City"><br>
-      <button type="submit" name="button">ADD</button>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputName" class="col-form-label">Suppliers Name</label>
+          <input type="text" name="name" class="form-control"value="" placeholder=""><br>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputName" class="col-form-label">Suppliers City</label>
+          <input type="text" name="kota" class="form-control"value="" placeholder=""><br>
+        </div>
+      </div>
+      <button type="submit" name="button" class="btn btn-primary">ADD</button>
+      <a class="btn btn-danger"href="/suppliers">Back</a>
     </form>
   </body>
-  <a href="/suppliers">Back</a>
+</div>
+</div>
+</div>
 </html>

@@ -21,7 +21,7 @@ router.get('/',(req,res)=>{
         // z.Items = mappings
         count++
         if(count == rows.length){
-          res.render('suppliers',{data:rows,err_msg:false})
+          res.render('suppliers',{data:rows,err_msg:false,title:'SUPPLIERS LIST'})
         }
       // })
     })
@@ -34,7 +34,7 @@ router.get('/',(req,res)=>{
 
 router.get('/add',(req,res)=>{
   // res.send('hacktiv8')
-  res.render('suppliersAdd',{err_msg:false})
+  res.render('suppliersAdd',{err_msg:false,title:'Add Suppliers'})
 })
 
 router.post('/add',(req,res)=>{
@@ -54,7 +54,7 @@ router.post('/add',(req,res)=>{
 
 router.get('/edit/:id',(req,res)=>{
   model.Suppliers.findById(req.params.id).then(datanya=>{
-    res.render('suppliersEdit',{data:datanya,err_msg:false})
+    res.render('suppliersEdit',{data:datanya,err_msg:false,title:'EDIT SUPPLIERS'})
     // res.send(datanya)
   })
   .catch(err=>{
@@ -112,12 +112,12 @@ router.get('/:id/additem',(req,res)=>{
               // console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz>',rows[0].Items.length);
               if(count == rows[0].Items.length && count1 == rowsItem.length){
             //  res.send(rowsItem)
-                res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,pageTitle:"Add Item to Supplier"})
+                res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,title:"Add Item to Supplier"})
               }
             })
         })
       }else{
-        res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,pageTitle:"Add Item to Supplier"})
+        res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,title:"Add Item to Supplier"})
       }
     })
   })

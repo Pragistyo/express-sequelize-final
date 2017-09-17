@@ -10,13 +10,14 @@ app.use(bodyParser.json())
 const index     = require('./router/index.js');
 const items     = require('./router/items.js');
 const suppliers = require('./router/suppliers.js');
+const search    = require('./router/search.js');
 
 
 
 app.use('/', index)
 app.use('/items', items)
 app.use('/suppliers', suppliers)
-// app.use('/teachers', teachers)
+app.use('/search', search)
 
 
 app.listen(process.env.PORT || 3000,()=>{

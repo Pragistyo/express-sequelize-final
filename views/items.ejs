@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <h1>ITEMS LIST</h1>
-  </head>
+<%- include partial/header%>
+<%- include partial/navbar%>
+    <!-- <h1>ITEMS LIST</h1>
+  </head> -->
+  <div class="container">
+  <div class="row">
+  <div class="col-md-6" style="margin-top:50px"><h1 style="margin:0;">ITEM LIST</h1></div>
+  <div class="col-md-6" style="margin-top:50px;text-align:right;position:relative">
+    <a href="/items/add"><button type="button" name="button" class="btn btn-success">Add New Item</button></a>
+  </div>
   <body>
-    <table border="1">
-      <tr>
-        <th>ID Item</th>
-        <th>Item Name</th>
-        <th>Item Brand</th>
-        <th>Code Item</th>
-        <th>List Supplier</th>
-        <th>Action</th>
+    <table  class="table table-hover">
+    <tr class="table-info">
+        <th class="text-center">ID Item</th>
+        <th class="text-center">Item Name</th>
+        <th class="text-center">Item Brand</th>
+        <th class="text-center">Code Item</th>
+        <th class="text-center">List Supplier</th>
+        <th class="text-center">Action</th>
       </tr>
       <% data.forEach(z=>{%>
       <tr>
-        <td><%=z.id%></td>
-        <td><%=z.name%></td>
-        <td><%=z.brand%></td>
-        <td><%=z.codeitem%></td>
+        <td class="text-center"><%=z.id%></td>
+        <td class="text-center"><%=z.name%></td>
+        <td class="text-center"><%=z.brand%></td>
+        <td class="text-center"><%=z.codeitem%></td>
         <%if((z.dataValues.Suppliers) && (z.dataValues.Suppliers.length>0)){%>
         <td>
             <ul>
@@ -32,15 +35,15 @@
         <%}else{%>
         <td class="text-center"><font color="red">No Supplier Yet</font></td>
         <%}%>
-        <td>
-          <a href="/items/edit/<%=z.id%>"><button type="button" name="button">EDIT</button></a>
-          <a href="/items/delete/<%=z.id%>"><button type="button" name="button">DELETE</button></a>
+        <td class="text-center">
+          <a href="/items/edit/<%=z.id%>"><button type="button" name="button" class="btn btn-info">EDIT</button></a>
+          <a href="/items/delete/<%=z.id%>"><button type="button" name="button" class="btn btn-danger">DELETE</button></a>
         </td>
       </tr>
       <%})%>
     </table>
     <br>
-    <a href="/items/add"><button type="button" name="button">Add New Item</button></a>
+    <!-- <a href="/items/add"><button type="button" name="button">Add New Item</button></a> -->
   </body><br>
-  <a href="/">Home</a>
+  <!-- <a href="/">Home</a> -->
 </html>

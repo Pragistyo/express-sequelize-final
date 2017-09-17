@@ -20,7 +20,7 @@ router.get('/',(req,res)=>{
         count++
         if(count == rows.length){
           // res.send(rows)
-          res.render('items',{data:rows,err_msg:false})
+          res.render('items',{data:rows,err_msg:false,title:'ITEM LIST'})
         }
       // })
     })
@@ -33,7 +33,7 @@ router.get('/',(req,res)=>{
 
 router.get('/add',(req,res)=>{
   // res.send('hacktiv8')
-  res.render('itemsAdd',{err_msg:false})
+  res.render('itemsAdd',{err_msg:false,title:'Add Item'})
 })
 
 router.post('/add',(req,res)=>{
@@ -48,14 +48,14 @@ router.post('/add',(req,res)=>{
   })
   .catch(err=>{
     console.log(err);
-    res.render('itemsAdd',{err_msg:err.errors[0].message})
+    res.render('itemsAdd',{err_msg:err.errors[0].message,title:'Add Item'})
   })
 })
 //-------------------------GET EDIT-----------------------------
 
 router.get('/edit/:id',(req,res)=>{
   model.Item.findById(req.params.id).then(datanya=>{
-    res.render('itemEdit',{data:datanya,err_msg:false})
+    res.render('itemEdit',{data:datanya,err_msg:false,title:"EDIT ITEM"})
     // res.send(datanya)
   })
   .catch(err=>{

@@ -1,20 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Add Item</title>
-    <h1>ADD Item</h1>
-  </head>
+<%- include partial/header%>
+<%- include partial/navbar%>
+<!-- </head> -->
+<div class="container">
+<div class="row">
+<div class="col-md-8 ml-md-auto mr-md-auto" style="margin-top:50px">
+<h1 style="margin:0;">Add Item</h1>
+<%if(err_msg){%>
+  <div class="alert alert-danger" role="alert">
+  <p><%=err_msg%></p>
+</div>
+  <%}%>
   <body>
     <form action="/items/add/" method="post">
-      Item Name: <input type="text" name="name" value="" placeholder="Input Item Name"><br>
-      Item Brand: <input type="text" name="brand" value="" placeholder="Input Item Brand"><br>
-      Code Item: <input type="text" name="codeitem" value="" placeholder="Input Code Item"><br>
-      <button type="submit" name="button">ADD</button>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputName" class="col-form-label">Name</label>
+          <input type="text" name="name" value="" placeholder="" class="form-control"><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputName" class="col-form-label">Brand</label>
+          <input type="text" name="brand" value="" placeholder="" class="form-control"><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputName" class="col-form-label">Code Item</label>
+          <input type="text" name="codeitem" value="" placeholder="" class="form-control"><br>
+        </div>
+    </div>
+      <button type="submit" name="button" class="btn btn-primary">Add</button>
+      <a class="btn btn-danger"href="/items">Back</a>
     </form>
   </body>
-  <%if(err_msg){%>
-    <p><%=err_msg%></p>
-  <%}%>
-  <a href="/items">Back</a>
+
+  <!-- <a href="/items">Back</a> -->
 </html>
