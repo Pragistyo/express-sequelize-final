@@ -15,11 +15,11 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputBrand" class="col-form-label">Min Price</label>
-                    <input type="text" name="min" class="form-control" id="inputBrand" placeholder="">
+                    <input type="integer" name="min" class="form-control" id="inputBrand" placeholder="">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputCode" class="col-form-label">Max Price</label>
-                    <input aria-describedby="codeHelp" type="text" name="max" class="form-control" id="inputCode" placeholder="">
+                    <input type="integer" name="max" class="form-control" id="inputCode" placeholder=""  aria-describedby="codeHelp">
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -48,25 +48,16 @@
                 <tbody>
                 <%data.forEach(z=>{%>
                   <tr>
-                    <td></td>
-                    <td><%=z.name%></td>
+                    <td><%=z.id%></td>
+                    <td><%=z.Item.name%></td>
                     <td>
-                      <ul>
-                        <%z.Suppliers.forEach(d=>{%>
-                        <li><%=d.name%></li>
-                        <%})%>
-                      </ul>
+                        <li><%=z.Supplier.name%></li>
                     </td>
                     <td>
-                      <%z.Suppliers.forEach(d=>{%>
-                      <li>Rp. <%=d.SupplierItem.price%>,-</li>
-                      <%})%>
-                      <!-- <%=z.Suppliers[0].SupplierItem.price%> -->
+                      <li>Rp. <%=z.price%>,-</li>
                     </td>
                   </tr>
-
                 <%})%>
-
                 </tbody>
               </table>
             </div>
