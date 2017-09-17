@@ -2,29 +2,71 @@
 <%- include partial/navbar%>
   </head>
   <body>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-4 ml-md-auto mr-md-auto" style="margin-top:50px">
-            <h1 style="margin:0;">Search Page</h1>
-            <form class="" action="" method="get">
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputName" class="col-form-label">Name Item</label>
-                  <input type="text" name="name" class="form-control" id="inputName" placeholder="  ">
+    <section>
+      <div class="container">
+          <div class="row">
+            <div class="col-md-4 ml-md-auto mr-md-auto" style="margin-top:50px">
+              <h1 style="margin:0;">Search Page</h1>
+              <form class="" action="/search" method="get">
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputName" class="col-form-label">Name Item</label>
+                    <input type="text" name="name" class="form-control" id="inputName" placeholder="  ">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputBrand" class="col-form-label">Min Price</label>
+                    <input type="text" name="min" class="form-control" id="inputBrand" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputCode" class="col-form-label">Max Price</label>
+                    <input aria-describedby="codeHelp" type="text" name="max" class="form-control" id="inputCode" placeholder="">
+                  </div>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="inputBrand" class="col-form-label">Min Price</label>
-                  <input type="text" name="min" class="form-control" id="inputBrand" placeholder="">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputCode" class="col-form-label">Max Price</label>
-                  <input aria-describedby="codeHelp" type="text" name="max" class="form-control" id="inputCode" placeholder="">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Search</button>
-            </form>
+                <button type="submit" class="btn btn-primary">Search</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+    </section>
+    <%if(data){%>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div style="text-align:center; margin: 20px 0">
+                <h1 style="margin:0;">Search Result</h1>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr class="table-info">
+                    <th>ID</th>
+                    <th>Item Name</th>
+                    <th>Supplier Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr>
+                    <td></td>
+                    <td>Apple Iphone 8 BARU</td>
+                    <td>PT. Angin Ribut</td>
+                    <td>10000000</td>
+                  </tr>
+                  
+                  <tr>
+                    <td></td>
+                    <td>Apple Iphone X</td>
+                    <td>PT. Sarana Sukamerana</td>
+                    <td>14000000</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <%}%>
   </body>
 </html>

@@ -1,6 +1,8 @@
 <%- include partial/header%>
-<div class="type-r0">
-<h1>ADD ITEM TO SUPPLIERS</h1><br>
+<div class="container">
+<div class="row">
+<div class="col-md-8 ml-md-auto mr-md-auto" style="margin-top:50px">
+<h1 style="margin:-10px 0 15px 0;">ADD ITEM TO SUPPLIERS</h1>
 <%if(err_msg){ %>
   <div class="alert alert-danger" role='alert'>
   <p><%=err_msg%></p>
@@ -9,7 +11,7 @@
 <a href="/suppliers">show all data</a><br><br>
 <body>
   <form action="/suppliers/<%=data[0].id%>/additem" method="post">
-    <fieldset>
+    <fieldset class="alert alert-dark" role="alert" style="margin-bottom:20px">
       <label>Name: </label> <label><%=data[0].name%></label><br>
       <label>City : </label> <label><%=data[0].kota%></label><br>
       <h3>LIST ITEM</h3>
@@ -18,17 +20,19 @@
           <li><%=item[0]%><%='   '%><%=item[1]%></li>
           <%})%>
       </ul>
-    </fieldset><br><br>
+    </fieldset><br>
     <label >List Item to add: </label><br>
-      <select name="ItemId">
+      <select class="form-control" name="ItemId">
         <%dataItem.forEach(z=>{%>
               <option value="<%=z.id%>"><%=z.name%></option>
         <%})%>
       </select>
       <label>Price: </label>
-      <input type="integer" name="price" value=""><br>
-      <button type="submit">ADD ITEM</button>
-  </form><br>
-
-  <a href="/suppliers">BACK</a>
+      <input type="number" name="price" class="form-control"value=""><br>
+      <button type="submit" class="btn btn-primary">ADD ITEM</button>
+      <a class="btn btn-danger"href="/suppliers">BACK</a>
+  </form>
   <body>
+</div>
+</div>
+</div>
