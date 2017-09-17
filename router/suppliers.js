@@ -10,21 +10,22 @@ router.get('/',(req,res)=>{
   model.Suppliers.findAll({include:{model:model.Item}},{order:[['id','ASC']]}).then(rows=>{
     // console.log('------->',rows.length);
     // res.send(rows[0].Items)
-    let count = 0
-    rows.forEach(z=>{
-      if(z.Items.length>0){
-        z.Items.map(d=>{
-          return d.SupplierItem.price = money(d.SupplierItem.price)
-        })
-      }
-      // return Promise.all(z.Items).then(mappings=>{
-        // z.Items = mappings
+    if(rows.length > 0){
+      let count = 0
+      rows.forEach(z=>{
+        if(z.Items.length>0){
+          z.Items.map(d=>{
+            return d.SupplierItem.price = money(d.SupplierItem.price)
+          })
+        }
         count++
         if(count == rows.length){
           res.render('suppliers',{data:rows,err_msg:false,title:'SUPPLIERS LIST'})
         }
-      // })
-    })
+      })
+    }else{
+      res.render('suppliers',{data:rows,err_msg:false,title:'SUPPLIERS LIST'})
+    }
   })
   .catch(err=>{
     throw err.toString()
