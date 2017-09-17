@@ -46,20 +46,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                <%data.forEach(z=>{%>
+                  <tr>
+                    <td></td>
+                    <td><%=z.name%></td>
+                    <td>
+                      <ul>
+                        <%z.Suppliers.forEach(d=>{%>
+                        <li><%=d.name%></li>
+                        <%})%>
+                      </ul>
+                    </td>
+                    <td>
+                      <%z.Suppliers.forEach(d=>{%>
+                      <li>Rp. <%=d.SupplierItem.price%>,-</li>
+                      <%})%>
+                      <!-- <%=z.Suppliers[0].SupplierItem.price%> -->
+                    </td>
+                  </tr>
 
-                  <tr>
-                    <td></td>
-                    <td>Apple Iphone 8 BARU</td>
-                    <td>PT. Angin Ribut</td>
-                    <td>10000000</td>
-                  </tr>
-                  
-                  <tr>
-                    <td></td>
-                    <td>Apple Iphone X</td>
-                    <td>PT. Sarana Sukamerana</td>
-                    <td>14000000</td>
-                  </tr>
+                <%})%>
 
                 </tbody>
               </table>
