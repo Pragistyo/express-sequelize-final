@@ -186,7 +186,9 @@ router.post('/:id/additem',(req,res)=>{
 
 router.get('/delete/:id',(req,res)=>{
   model.Suppliers.destroy({where:{id:req.params.id}}).then(()=>{
-    res.redirect('/suppliers')
+    model.SupplierItem.destroy({where:{id:req.params.id}}).then(()=>{
+      res.redirect('/suppliers')
+    })
   })
 })
 

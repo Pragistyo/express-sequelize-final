@@ -87,7 +87,9 @@ router.post('/edit/:id',(req,res)=>{
 
 router.get('/delete/:id',(req,res)=>{
   model.Item.destroy({where:{id:req.params.id}}).then(()=>{
-    res.redirect('/items')
+    model.SupplierItem.destroy({where:{ItemId:req.params.id}}).then(()=>{
+      res.redirect('/items')
+    })
   })
 })
 
