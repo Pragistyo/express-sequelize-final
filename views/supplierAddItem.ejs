@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+<%- include partial/header%>
 <div class="type-r0">
 <h1>ADD ITEM TO SUPPLIERS</h1><br>
+<%if(err_msg){ %>
+  <div class="alert alert-danger" role='alert'>
+  <p><%=err_msg%></p>
+  <%  }%>
+  </div>
 <a href="/suppliers">show all data</a><br><br>
 <body>
   <form action="/suppliers/<%=data[0].id%>/additem" method="post">
@@ -28,8 +29,6 @@
       <input type="integer" name="price" value=""><br>
       <button type="submit">ADD ITEM</button>
   </form><br>
-  <%if(err_msg){ %>
-    <p><%=err_msg%></p>
-    <%  }%>
+
   <a href="/suppliers">BACK</a>
   <body>

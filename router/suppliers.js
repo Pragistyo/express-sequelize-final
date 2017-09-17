@@ -105,11 +105,6 @@ router.get('/:id/additem',(req,res)=>{
                 if(count1<rowsItem.length){
                   rowsItem.splice(index,1)}
               }
-              // console.log(count1);
-              // console.log('====================>',rowsItem.length);
-              // console.log(('+++++++++++++++++++++++++'));
-              // console.log('z',count);
-              // console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz>',rows[0].Items.length);
               if(count == rows[0].Items.length && count1 == rowsItem.length){
             //  res.send(rowsItem)
                 res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:false,title:"Add Item to Supplier"})
@@ -154,10 +149,36 @@ router.post('/:id/additem',(req,res)=>{
   // else{
   //
   // }
-    // .catch(err=>{
-    //     throw err.toString()
-    //   })
-    // })
+    .catch(err=>{
+      model.Suppliers.findAll({include:{model:model.Item},where:{id:req.params.id}}).then(rows=>{
+        model.Item.findAll().then(rowsItem=>{
+          let count = 0
+          let alreadyList= [];
+          if(rows[0].Items.length>0){
+            rows[0].Items.forEach(z=>{
+              count ++
+                z.SupplierItem.price = money(z.SupplierItem.price)
+                let count1 = 0
+                rowsItem.forEach(d=>{
+                  count1++
+                  if(z.name === d.name){
+                    alreadyList.push([z.name, z.SupplierItem.price])
+                    index = count1-1
+                    if(count1<rowsItem.length){
+                      rowsItem.splice(index,1)}
+                  }
+                  if(count == rows[0].Items.length && count1 == rowsItem.length){
+                //  res.send(rowsItem)
+                    res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:"Please add price !",title:"Add Item to Supplier"})
+                  }
+                })
+            })
+          }else{
+            res.render('supplierAddItem',{data:rows,dataItem:rowsItem,dataList:alreadyList,err_msg:"Please add price !",title:"Add Item to Supplier"})
+          }
+        })
+      })
+    })
   })
 
 // //-------------------------DELETE----------------------------------

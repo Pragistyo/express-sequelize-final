@@ -1,6 +1,7 @@
 const express    = require('express')
 const bodyParser = require('body-parser');
 const app        = express();
+const env        = process.env.NODE_ENV || "development";
 
 
 app.set('view engine', 'ejs')
